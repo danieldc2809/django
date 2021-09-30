@@ -1,0 +1,22 @@
+docker inspect fcc97e066cc8 | grep IPAddress
+
+In the pgadmin service, a hostname alias pgsql-server to the db container is created. 
+So, you can access the PostgreSQL server using pgsql-server as the hostname (no IP address required).
+https://linuxhint.com/postgresql_docker/
+
+Next, when you specify ./Frontend/ :/var/www/html/, you are specifying a bind mount 
+which is why when you look in ./Frontend on the host-side, all of the files you expect 
+to see are gone. If I understand your end-goal correctly, you want to have the files in 
+/var/www/html/ within the container be accessible via the exact same location outside 
+of the container. If so, then you probably want to use a named volume along with a 
+user-specified mount point as follows:
+https://stackoverflow.com/questions/39176561/copying-files-to-a-container-with-docker-compose
+
+depends_on expresses startup and shutdown dependencies between services.
+links defines a network link to containers in another service. 
+
+
+psql -U username -h localhost -d dbname -f filename.sql
+psql -U postgres -h 172.17.0.3 -d postgres -f componentes.sql
+
+sudo rm -r data
