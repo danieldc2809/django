@@ -15,9 +15,19 @@ Crear archivo `.env`:
         cp .env-example .env
 
 
+Levantar servicios:
+
+        docker-compose up -d --build
+
+
 Restore de base de datos:
 
-        # Entrar al contenedor de la db
-        docker exec -it db_container /bin/bash
-        psql -U ${POSTGRES_USER} -d ${POSTGRES_DB} -f componentes.sql
-        # Salir del contenedor con ´Ctrl + D´
+```bash
+    # Entrar al contenedor de la db
+    docker exec -it db_container /bin/bash
+
+    # Hacer restore
+    psql -U ${POSTGRES_USER} -d ${POSTGRES_DB} -f componentes.sql
+
+    # Salir del contenedor con 'Ctrl + D'
+```

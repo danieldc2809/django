@@ -6,7 +6,7 @@ WORKDIR /opt
 
 COPY ./bamapas/requirements.txt /opt/requirements.txt
 
-RUN apt-get update -y && apt-get install nano \
+RUN apt-get update -y && apt-get install nano && apt-get install -y git \
     && apt-get install -y python3 \
     && apt-get install -y python3-pip && python3 -m pip install --upgrade pip \
     && apt-get install -y libsasl2-dev \
@@ -21,5 +21,8 @@ COPY ./bamapas /opt/app
 
 WORKDIR /opt/app
 
-# not working
-# CMD ["python3 manage.py migrate"]
+RUN python3 manage.py migrate \
+    && python3 manage.py loaddata iconos mapas
+    # Faltan paramentros: && python3 manage.py createsuperuser \
+
+ENTRYPOINT python3 manage.py runserver
