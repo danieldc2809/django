@@ -1,3 +1,5 @@
+version: "3"
+
 services:
 
   db:
@@ -8,15 +10,14 @@ services:
     env_file:
       - .env    
     ports:
-      - "5444:5432"    
+      - "5432:5432"    
     volumes:
-      - ./postgresql/data/db:/var/lib/postgresql/data
+      - ./postgis/data/db:/var/lib/postgresql/data
     restart: unless-stopped
-    #command: >
-      #- psql -U ${POSTGRES_USER} -d ${POSTGRES_DB} -f opt/db_dump/componentes.sql
-      #- psql -U ${POSTGRES_USER} -h ${POSTGRES_HOST} -d ${POSTGRES_DB} -f /db_dump/componentes.sql
+    
     networks:
       - db_network
+    
 
   app:
     container_name: app_container
