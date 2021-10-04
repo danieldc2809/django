@@ -3,14 +3,15 @@ services:
   db:
     container_name: db_container
     build:
-      context: ./postgresql
+      context: ./postgis
       dockerfile: Dockerfile
     env_file:
       - .env    
     ports:
-      - "5432:5432"    
+      - "5444:5432"    
     volumes:
       - ./postgresql/data/db:/var/lib/postgresql/data
+    restart: unless-stopped
     #command: >
       #- psql -U ${POSTGRES_USER} -d ${POSTGRES_DB} -f opt/db_dump/componentes.sql
       #- psql -U ${POSTGRES_USER} -h ${POSTGRES_HOST} -d ${POSTGRES_DB} -f /db_dump/componentes.sql
@@ -31,22 +32,6 @@ services:
       - db
     networks:
       - app_bamapas
-
-  pgadmin:
-    container_name: pgadmin_container
-    image: dpage/pgadmin4
-    env_file:
-      - .env
-    ports:
-      - "${PGADMIN_PORT}:80"  
-    volumes:
-       - pgadmin:/var/lib/pgadmin
-    depends_on:
-      - db
-    links:
-      - db:${POSTGRES_HOST}
-    networks:
-      - db_network
 
   redis:
     container_name: redis_container

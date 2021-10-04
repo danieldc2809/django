@@ -6,4 +6,4 @@ https://repositorio-asi.buenosaires.gob.ar/ssppbe_usig/bamapas/-/tree/integracio
 
 Ejecutar el siguiente comando para integrar el codigo original de `bamapas` al proyecto:
     
-    git submodule update -i
+        git submodule update -i
