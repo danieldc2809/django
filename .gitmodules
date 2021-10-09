@@ -1,4 +1,4 @@
 [submodule "app/bamapas"]
 	path = app/bamapas
 	url = https://repositorio-asi.buenosaires.gob.ar/ssppbe_usig/bamapas.git
-	branch = integracion_matrice
+	branch = componentes

@@ -1,28 +1,29 @@
 FROM ubuntu:18.04
 
-EXPOSE 8000
+EXPOSE 8000 3000
 
 WORKDIR /opt
 
 COPY ./bamapas/requirements.txt /opt/requirements.txt
 
-RUN apt-get update -y && apt-get install nano && apt-get install -y git \
-    && apt-get install -y python3 \
-    && apt-get install -y python3-pip && python3 -m pip install --upgrade pip \
-    && apt-get install -y libsasl2-dev \
-    && apt-get install -y python-dev \
-    && apt-get install -y libldap2-dev \
-    && apt-get install -y libssl-dev \
+RUN apt-get -q -y update \
+    && apt-get -q -y install \
+        curl \
+        nano \
+        git \
+        libssl-dev \
+        libldap2-dev \
+        libsasl2-dev \
+        nodejs \
+        python-dev \
+        python3 \
+        python3-pip \
+        gdal-bin \
+    && python3 -m pip install --upgrade pip \
     && python3 -m pip install -r requirements.txt \
-    && apt-get install -y gdal-bin \
-    && mkdir /opt/app
+    && mkdir /opt/app \
+    && curl -sL https://deb.nodesource.com/setup_16.x | bash
     
 COPY ./bamapas /opt/app
 
 WORKDIR /opt/app
-
-RUN python3 manage.py migrate \
-    && python3 manage.py loaddata iconos mapas
-    # Faltan paramentros: && python3 manage.py createsuperuser \
-
-ENTRYPOINT python3 manage.py runserver

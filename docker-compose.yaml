@@ -8,45 +8,64 @@ services:
       context: ./postgis
       dockerfile: Dockerfile
     env_file:
-      - .env    
+      - .env  
     ports:
-      - "5432:5432"    
+      - 5432:5432
     volumes:
       - ./postgis/data/db:/var/lib/postgresql/data
     restart: unless-stopped
-    
     networks:
-      - db_network
-    
+      - app_network
 
   app:
     container_name: app_container
     build:
       context: ./app
       dockerfile: Dockerfile
-    #command: python3 manage.py runserver
+    env_file:
+      - .env
+    command: python3 manage.py runserver 0.0.0.0:8000
     ports:
       - 8000:8000
-    volumes:
-      - /bamapas:/opt/app
+      - 3000:3000
     depends_on:
       - db
+    links:
+      - db:${POSTGRES_HOST}
     networks:
-      - app_bamapas
+      - app_network
+  
+#  pgadmin:
+#    container_name: pgadmin_container
+#    image: dpage/pgadmin4
+#    env_file:
+#      - .env
+#    ports:
+#      - 5000:80
+#    depends_on:
+#      - db
+#    links:
+#      - db:${POSTGRES_HOST}
+#    networks:
+#      - app_network
+
 
   redis:
     container_name: redis_container
     image: redis
+    ports:
+      - 6379:6379
     depends_on:
       - app
-
+    env_file:
+      - .env
+    networks:
+      - app_network
+      
 networks:
-  app_bamapas:
-    name: app_bamapas
-  db_network:
-    name: db_network
+  app_network:
+    driver: bridge
 
 volumes:
     db:
     app:
-    pgadmin:
