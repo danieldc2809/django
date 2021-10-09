@@ -23,51 +23,51 @@ Levantar servicios:
 Restore de base de datos:
 
 ```bash
-        # Entrar al contenedor db_container
-        docker exec -it db_container /bin/bash
+    # Entrar al contenedor db_container
+    docker exec -it db_container /bin/bash
 
-        # Hacer restore
-        psql -U ${POSTGRES_USER} -d ${POSTGRES_DB} -f componentes.sql
+    # Hacer restore
+    psql -U ${POSTGRES_USER} -d ${POSTGRES_DB} -f componentes.sql
 
-        # Salir del contenedor
-        'Ctrl + D'
+    # Salir del contenedor
+    'Ctrl + D'
 ```
 
 Correr `manage.py`:
 
 ```bash
-        # Entrar al contenedor app_container
-        docker exec -it app_container /bin/bash
+    # Entrar al contenedor app_container
+    docker exec -it app_container /bin/bash
 
-        # Correr el 'migrate'
-        python3 manage.py migrate
+    # Correr el 'migrate'
+    python3 manage.py migrate
 
-        # Cargar datos, mapa, e iconos
-        python3 manage.py loaddata iconos mapas
+    # Cargar datos, mapa, e iconos
+    python3 manage.py loaddata iconos mapas
         
-        # Crear usuario administrador
-        python3 manage.py createsuperuser
+    # Crear usuario administrador
+    python3 manage.py createsuperuser
 
-        # Salir del contenedor
-        'Ctrl + D'
+    # Salir del contenedor
+    'Ctrl + D'
 
-        # Reiniciar servicio 'app'
-        docker-compose restart app
+    # Reiniciar servicio 'app'
+    docker-compose restart app
 
-        ir a http://localhost:8000/admin/
+    ir a http://localhost:8000/admin/
 ```
 
 Levantar `bamapas`:
 
 ```bash
-        # Entrar al contenedor app_container
-        docker exec -it app_container /bin/bash
+    # Entrar al contenedor app_container
+    docker exec -it app_container /bin/bash
 
-        # Instalar 'npm'
-        npm install -s
+    # Instalar 'npm'
+    npm install -s
 
-        # Iniciar aplicacion
-        npm  start
+    # Iniciar aplicacion
+    npm  start
 
-        ir a http://localhost:3000
+    ir a http://localhost:3000
 ```
