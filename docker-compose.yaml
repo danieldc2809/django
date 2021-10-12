@@ -30,25 +30,8 @@ services:
       - 3000:3000
     depends_on:
       - db
-    links:
-      - db:${POSTGRES_HOST}
     networks:
       - app_network
-  
-#  pgadmin:
-#    container_name: pgadmin_container
-#    image: dpage/pgadmin4
-#    env_file:
-#      - .env
-#    ports:
-#      - 5000:80
-#    depends_on:
-#      - db
-#    links:
-#      - db:${POSTGRES_HOST}
-#    networks:
-#      - app_network
-
 
   redis:
     container_name: redis_container

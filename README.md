@@ -20,6 +20,14 @@ Levantar servicios:
         docker-compose up -d --build
 
 
+Para levantar servicios localmente con `pgadmin` ejecutar:
+
+        docker-compose -f docker-compose-local.yaml up -d --build
+
+En caso de ser necesario ejecutar con `sudo`.
+
+---
+
 Restore de base de datos:
 
 ```bash
@@ -28,11 +36,12 @@ Restore de base de datos:
 
     # Hacer restore
     psql -U ${POSTGRES_USER} -d ${POSTGRES_DB} -f componentes.sql
+    psql -U ${POSTGRES_USER} -d ${POSTGRES_DB} -f componentes_positivos_residentes_dia.sql
 
     # Salir del contenedor
     'Ctrl + D'
 ```
-
+---
 Correr `manage.py`:
 
 ```bash
@@ -56,7 +65,7 @@ Correr `manage.py`:
 
     ir a http://localhost:8000/admin/
 ```
-
+---
 Levantar `bamapas`:
 
 ```bash
