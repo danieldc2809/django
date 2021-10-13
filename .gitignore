@@ -1,3 +1,2 @@
-./postgis/data/
-./postgis/db_dump
+./postgis/data/*
 .env

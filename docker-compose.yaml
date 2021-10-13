@@ -2,6 +2,20 @@ version: "3"
 
 services:
 
+  nginx:
+    container_name: nginx
+    build:
+      context: nginx/
+      dockerfile: Dockerfile
+    networks:
+      - app_network
+    restart: always
+    expose:
+      - 80
+    ports:
+      - 80:80
+
+
   db:
     container_name: db_container
     build:
