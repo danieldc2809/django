@@ -10,6 +10,6 @@ RUN mkdir -p ${NGINX_DIR}/sites-enabled
 COPY setup/nginx.conf ${NGINX_DIR}
 COPY setup/sites-available/* ${NGINX_DIR}/sites-available
 
-RUN ln -s ${NGINX_DIR}/sites-available/ckan.conf ${NGINX_DIR}/sites-enabled/ckan.conf
+RUN ln -s ${NGINX_DIR}/sites-available/app.conf ${NGINX_DIR}/sites-enabled/app.conf
 
 EXPOSE 80
