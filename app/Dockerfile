@@ -14,15 +14,16 @@ RUN apt-get -q -y update \
         libssl-dev \
         libldap2-dev \
         libsasl2-dev \
-        nodejs \
         python-dev \
-        python3 \
+        python3.8 \
         python3-pip \
         gdal-bin \
     && python3 -m pip install --upgrade pip \
     && python3 -m pip install -r requirements.txt \
-    && mkdir /opt/app \
-    && curl -sL https://deb.nodesource.com/setup_16.x | bash
+    && mkdir /opt/app
+
+#RUN curl -sL https://deb.nodesource.com/setup_16.x | bash \
+#    && apt-get -q -y install nodejs
     
 COPY ./bamapas /opt/app
 
