@@ -4,7 +4,7 @@ EXPOSE 8000 3000
 
 WORKDIR /opt
 
-COPY ./bamapas/requirements.txt /opt/requirements.txt
+COPY ./bamapas/requirements.txt ./entrypoint.sh /opt/
 
 RUN apt-get -q -y update \
     && apt-get -q -y install \
@@ -28,3 +28,5 @@ RUN apt-get -q -y update \
 COPY ./bamapas /opt/app
 
 WORKDIR /opt/app
+
+ENTRYPOINT ["sh", "/opt/entrypoint.sh"]

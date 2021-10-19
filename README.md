@@ -1,6 +1,6 @@
-# test-docker-bamapas
+# componentes-v1-dockerizado
 
-Repositorio de testing que tiene como objetivo dockerizar la aplicación de bamapas (rama `componentes`).
+Repositorio dockerizado de la aplicación de componentes V1 (rama `componentes`).
 
 https://repositorio-asi.buenosaires.gob.ar/ssppbe_usig/bamapas/-/tree/componentes
 
@@ -12,7 +12,7 @@ Ejecutar el siguiente comando para integrar el codigo original de `bamapas` al p
 
 Crear archivo `.env`:
 
-        cp .env-example .env
+        cp .env-example-dev .env
 
 
 Levantar servicios:
@@ -22,7 +22,9 @@ Levantar servicios:
 
 Para levantar servicios localmente con `pgadmin` ejecutar:
 
+        cp .env-example-local .env-local
         docker-compose -f docker-compose-local.yaml up -d --build
+
 
 En caso de ser necesario ejecutar con `sudo`.
 
@@ -35,7 +37,7 @@ Restore de base de datos:
     docker exec -it db_container /bin/bash
 
     # Hacer restore
-    psql -U ${POSTGRES_USER} -d ${POSTGRES_DB} -f componentes.sql
+    psql -U ${POSTGRES_USER} -d ${POSTGRES_DB} -f componentes_django.sql
     psql -U ${POSTGRES_USER} -d ${POSTGRES_DB} -f componentes_positivos_residentes_dia.sql
 
     # Salir del contenedor
@@ -64,19 +66,4 @@ Correr `manage.py`:
     docker-compose restart app
 
     ir a http://localhost:8000/admin/
-```
----
-Levantar `bamapas`:
-
-```bash
-    # Entrar al contenedor app_container
-    docker exec -it app_container /bin/bash
-
-    # Instalar 'npm'
-    npm install -s
-
-    # Iniciar aplicacion
-    npm  start
-
-    ir a http://localhost:3000
 ```
