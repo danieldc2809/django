@@ -2,6 +2,19 @@ version: "3"
 
 services:
 
+  nginx:
+    container_name: nginx_container
+    build:
+      context: nginx/
+      dockerfile: Dockerfile
+    restart: always
+    expose:
+      - 80
+    ports:
+      - 80:80
+    networks:
+      - app_network
+
   db:
     container_name: db_container
     build:
@@ -45,7 +58,6 @@ services:
       - db
     networks:
       - app_network
-
 
   redis:
     container_name: redis_container
