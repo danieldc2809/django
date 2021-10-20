@@ -7,4 +7,6 @@ RUN mkdir /opt/db_dump \
 
 COPY ./db_dump /opt/db_dump
 
+COPY ./restore_db.sh /docker-entrypoint-initdb.d
+
 WORKDIR /opt/db_dump
