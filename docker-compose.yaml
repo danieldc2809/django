@@ -39,6 +39,8 @@ services:
       - .env
     ports:
       - 8000:8000
+    volumes:
+      - ./app/bamapas:/opt/app
     depends_on:
       - db
     networks:
@@ -51,8 +53,6 @@ services:
       - 6379:6379
     depends_on:
       - app
-    env_file:
-      - .env
     networks:
       - app_network
       
@@ -62,3 +62,4 @@ networks:
 
 volumes:
     db:
+    app:

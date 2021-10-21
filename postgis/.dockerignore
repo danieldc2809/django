@@ -1,0 +1,7 @@
+**/postgis/data/
+**/.vscode
+**/.env*
+**/.git
+**/__pycache__
+**/node_modules
+README*
