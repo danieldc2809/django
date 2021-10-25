@@ -12,10 +12,10 @@
 #     exit 1
 # }
 
-# python manage.py collectstatic --no-input --clear || {
-#     echo "Failed to collect static files."
-#     exit 1
-# }
+python manage.py collectstatic --no-input --clear || {
+     echo "Failed to collect static files."
+     exit 1
+}
 
 # exec "$@"
 
