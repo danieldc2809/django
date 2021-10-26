@@ -37,6 +37,8 @@ services:
       dockerfile: Dockerfile
     env_file:
       - .env-local
+    environment:
+      - ENVIRONMENT=local
     ports:
       - 8000:8000
       - 3000:3000

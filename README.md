@@ -29,41 +29,5 @@ Para levantar servicios localmente con `pgadmin` ejecutar:
 En caso de ser necesario ejecutar con `sudo`.
 
 ---
-
-Restore de base de datos:
-
-```bash
-    # Entrar al contenedor db_container
-    docker exec -it db_container /bin/bash
-
-    # Hacer restore
-    psql -U ${POSTGRES_USER} -d ${POSTGRES_DB} -f componentes_django.sql
-    psql -U ${POSTGRES_USER} -d ${POSTGRES_DB} -f componentes_positivos_residentes_dia.sql
-
-    # Salir del contenedor
-    'Ctrl + D'
-```
----
-Correr `manage.py`:
-
-```bash
-    # Entrar al contenedor app_container
-    docker exec -it app_container /bin/bash
-
-    # Correr el 'migrate'
-    python3 manage.py migrate
-
-    # Cargar datos, mapa, e iconos
-    python3 manage.py loaddata iconos mapas
-        
-    # Crear usuario administrador
-    python3 manage.py createsuperuser
-
-    # Salir del contenedor
-    'Ctrl + D'
-
-    # Reiniciar servicio 'app'
-    docker-compose restart app
-
-    ir a http://localhost:8000/admin/
+    ir a http://localhost/admin/
 ```
