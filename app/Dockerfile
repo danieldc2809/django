@@ -1,7 +1,7 @@
 #FROM ubuntu:18.04
 FROM python:3.8-slim-buster
 
-EXPOSE 8000 3000
+EXPOSE 8000 3333
 
 # Keeps Python from generating .pyc files in the container
 ENV PYTHONDONTWRITEBYTECODE=1
