@@ -1,4 +1,3 @@
-#FROM ubuntu:18.04
 FROM python:3.8-slim-buster
 
 EXPOSE 8000 3333
@@ -18,20 +17,14 @@ RUN apt-get -q -y update \
         curl \
         nano \
         git \
-#        libssl-dev \
-#        libldap2-dev \
-#        libsasl2-dev \
-#        python-dev \
-#        python3.8 \
-#        python3-pip \
-#        gdal-bin \
+        libz-dev \
+        libjpeg-dev \
+        libfreetype6-dev \
+        python-dev \
     && python3 -m pip install --upgrade pip \
     && python3 -m pip install -r requirements.txt \
     && mkdir /opt/app
-
-#RUN curl -sL https://deb.nodesource.com/setup_16.x | bash \
-#    && apt-get -q -y install nodejs
-    
+   
 COPY ./bamapas /opt/app
 
 WORKDIR /opt/app
